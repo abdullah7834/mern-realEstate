@@ -28,6 +28,14 @@ Also Paste the other two below commands and refresh the page  :: Your Project wi
 Make  folder named as the pages  and inside it create new files 
 Home  , Signin  , Signout  , Profile  ,
 
+Then make components and Design a header Page inside it 
+
 Now install the packages 
 react-router-dom 
 react-icons (For the react Icons)
+
+
+GO to backend make server and  connect to the database ::
+
+After create a Model for a user ::
+ now create a test API 
