@@ -6,13 +6,13 @@ import Oauth from '../components/Oauth'
 
 
 function SignUp() {
-  const [formdata , setFormData] = useState({})
+  const [formData , setFormData] = useState({})
   const [error , setError] = useState(null)
   const [loading , setLoading]=  useState(false)
   const navigate = useNavigate()
   const handleChange = (e) =>{
    setFormData({
-    ...formdata , 
+    ...formData , 
     [e.target.id] : e.target.value
    })
   }
@@ -26,7 +26,7 @@ function SignUp() {
     headers :{
     'Content-Type' : 'application/json' 
     },
-    body : JSON.stringify(formdata)
+    body : JSON.stringify(formData)
     }
    )
   const data =await res.json();
@@ -45,7 +45,7 @@ function SignUp() {
     }
     
   }
-  console.log(formdata)
+ 
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl text-center font-bold my-7' >Sign Up</h1>
