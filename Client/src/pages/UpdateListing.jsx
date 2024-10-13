@@ -99,12 +99,11 @@ function UpdateListing() {
   };
 
   const handleRemoveImage = (index) => {
-    setFormData(
-      ...formData,
-      formData.imageUrls.filter((_, i) => i !== index)
-    );
+    setFormData((prevState) => ({
+      ...prevState, // Copy the previous form data
+      imageUrls: prevState.imageUrls.filter((_, i) => i !== index) // Filter out the image at the specified index
+    }));
   };
-
   const handleChange = (e) => {
     if (e.target.id === "sale" || e.target.id === "rent") {
       setFormData({ ...formData, type: e.target.id });
