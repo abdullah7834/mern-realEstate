@@ -25,7 +25,7 @@ const listingSchema  = new Schema ({
     type : Number ,
     required : true 
   } , 
-  bathooms : {
+  bathrooms : {
     type : Number  ,
     required  : true 
   } , 
