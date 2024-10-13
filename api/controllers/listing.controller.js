@@ -14,14 +14,15 @@ try {
  export const deleteListing = async(req , res , next) =>{
   const listing = await Listing.findById(req.params.id);
   if(!listing){
-    return next(errorHandler(404 , "Listing not Found"))
-  }
+    return next(errorHandler(404 , "Listing Not Found"))
+  };
   if(req.user.id !== listing.userRef){
-    return next(errorHandler(401, "You can Only Delete your OWn Listing "))
-    res.status(200).json("Listing Deleted Successfully")
-  }
+    return next(errorHandler(401 , "You can only delete your own listings"))
+  };
+   
   try {
     await Listing.findByIdAndDelete(req.params.id)
+    res.status(200).json("Listing Deleted Successfully  ")
   } catch (error) {
     next(error)
   }
