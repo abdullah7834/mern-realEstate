@@ -1,9 +1,30 @@
 
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {useSelector} from 'react-redux'
+import { useEffect, useState } from "react";
+
 function Header() {
   const {currentUser} = useSelector((state)=> state.user)
+  const [searchterm  , setSearchterm] = useState('')
+  const navigate = useNavigate()
+
+const handleSubmit = (e)=>{
+  e.preventDefault();
+  // built in JS function to get all the params in a url 
+  const urlParams = new URLSearchParams(window.location.search);  
+  urlParams.set('searchterm' , searchterm);
+  const searchQuery = urlParams.toString();
+  navigate(`/search?${searchQuery}`)
+}
+
+useEffect(()=>{
+  const urlParams = new URLSearchParams(window.location.search);
+  const searchTermfromUrl = urlParams.get('searchterm')
+  if(searchTermfromUrl){
+    setSearchterm(searchTermfromUrl)
+  }
+},[location.search])
   return (
     // We are going to create three things in header first Logo and Second One is the Search Bar and third is the menu ::
     <header className="bg-slate-200 shadow-md">
@@ -15,13 +36,18 @@ function Header() {
           </h1>
         </Link>
 
-        <form className="bg-slate-100 p-3 rounded-lg flex items-center">
+        <form onSubmit={handleSubmit} className="bg-slate-100 p-3 rounded-lg flex items-center">
           <input
             type="text"
             placeholder="Search..."
             className="bg-transparent focus:outline-none w-24 sm:w-64"
+            value={searchterm}
+            onChange={(e) => setSearchterm(e.target.value)}
           />
-          <FaSearch className="text-slate-600" />
+          <button>
+            <FaSearch className="text-slate-600" />
+            </button>
+          
         </form>
         <ul className="flex gap-4">
           <Link to="/">
