@@ -263,7 +263,10 @@ function CreateListing() {
               />
               <div className="flex flex-col items-center">
                 <p>Regular Price</p>
-                <span className="text-xs">($ / Month)</span>
+
+                {formData.type === 'rent' && (
+                  <span className='text-xs'>($ / month)</span>
+                  )}
               </div>
             </div>
             {formData.offer && (
@@ -280,7 +283,9 @@ function CreateListing() {
                 />
                 <div className="flex flex-col items-center">
                   <p>Discounted Price</p>
-                  <span className="text-xs">($ / Month)</span>
+                  {formData.type === 'rent' && (
+                    <span className='text-xs'>($ / month)</span>
+                    )}
                 </div>
               </div>
             )}
@@ -338,6 +343,7 @@ function CreateListing() {
           <button disabled={loading || uploading} className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80">
             {loading ? "Creating..." : "Create Listing"}
           </button>
+          
           {error && <p className="text-red-700 text-sm">{error}</p>}
         </div>
       </form>
