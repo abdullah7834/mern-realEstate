@@ -28,7 +28,7 @@ app.use('/api/user' , userRouter)
 app.use('/api/auth' , authRouter)
 app.use('/api/listing' , listingRouter)
 
-app.use(express.json(path.join(__dirname , 'Client/dist')))
+app.use(express.static(path.join(__dirname , 'Client/dist')))
 app.get('٭'  , (req , res)=>{
  res.sendFile(path.join(__dirname , 'Client ,dist , index.html'))
 })
